@@ -60,16 +60,25 @@ Estas acciones contribuirán a mejorar la precisión, utilidad y escalabilidad d
 📌 **Modelo seleccionado**: **Random Forest**, ya que tiene el mejor rendimiento (R² = 0.86).  
 
 ***Archivos del proyecto***
+
 📜 Prediccion.py → Código principal para entrenar y hacer predicciones.
+
 📜 modelo_entrenado.pkl → Modelo Random Forest entrenado.
+
 📜 scaler.pkl → Escalador para normalizar características.
+
 📜 dataset.csv → Datos utilizados.
 
 ***Conclusiones***
+
 ✅ Random Forest es el mejor modelo para predecir precios de viviendas en Ámsterdam.
+
 ✅ Se optimizaron los hiperparámetros para mejorar la precisión.
+
 ✅ El modelo puede ser implementado para hacer predicciones en tiempo real.
 
 📌 Autor: Diego Haro, haro-17
+
 📅 Fecha de creación: marzo, 2025
+
 🔗 Repositorio en GitHub: 
