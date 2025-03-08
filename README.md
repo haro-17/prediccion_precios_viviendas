@@ -11,12 +11,14 @@ El conjunto de datos utilizado contiene información sobre diversas propiedades 
 ***Preprocesamiento y Análisis Exploratorio***
 
 El preprocesamiento de los datos consistió en las siguientes tareas:
+
 1. Limpieza de datos: Se eliminaron valores nulos y duplicados para garantizar la calidad del conjunto de datos.
 2. Codificación de variables categóricas: Las variables categóricas fueron transformadas en variables numéricas mediante técnicas de codificación.
 3. Normalización y escalado de variables numéricas: Las variables numéricas fueron normalizadas para garantizar que todas las características tuvieran un impacto similar en los modelos.
 4. Análisis exploratorio: Se realizaron análisis para identificar correlaciones entre las variables y detectar patrones que pudieran influir en los precios.
 
 ***Modelado y Evaluación***
+
 Se entrenaron y evaluaron los siguientes modelos para la predicción de los precios de viviendas:
 
 * Regresión Lineal
@@ -28,9 +30,11 @@ Se entrenaron y evaluaron los siguientes modelos para la predicción de los prec
 Cada uno de estos modelos fue evaluado utilizando métricas de rendimiento como el RMSE (Root Mean Squared Error) y el R², con el fin de seleccionar el modelo con mejor desempeño predictivo.
 
 ***Resultados y Conclusiones***
+
 El análisis de los resultados indicó que el modelo RandomForest fue el que ofreció el mejor rendimiento, con el menor error y la mayor capacidad predictiva. Además, se encontró que variables como la ubicación y el tamaño de la vivienda son los factores más influyentes en la estimación del precio final.
 
 ***Hallazgos Clave***
+
 * Ubicación: Las viviendas situadas en áreas céntricas tienen un impacto considerable en el precio, a menudo superando la influencia del tamaño de la propiedad.
 
 * Precios en barrios específicos: Algunos barrios con alta demanda, debido a su proximidad a áreas comerciales y turísticas, presentan precios más elevados.
@@ -39,8 +43,10 @@ El análisis de los resultados indicó que el modelo RandomForest fue el que ofr
 
 * Normalización de datos: La normalización de las variables mejoró el desempeño de modelos como SVM y redes neuronales, que requieren datos escalados para optimizar su rendimiento.
 
-Mejoras y Trabajo Futuro
+***Mejoras y Trabajo Futuro***
+
 Para seguir mejorando la precisión de los modelos y ampliar su aplicabilidad, se proponen las siguientes acciones:
+
 * Optimización de hiperparámetros: Ajustar los hiperparámetros de los modelos para obtener una mayor precisión en las predicciones.
 
 * Ampliación del conjunto de datos: Incluir variables adicionales como tasas de interés hipotecarias, indicadores económicos y otros factores macroeconómicos que puedan influir en los precios de las viviendas.
