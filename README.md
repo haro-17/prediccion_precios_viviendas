@@ -81,4 +81,4 @@ Estas acciones contribuirán a mejorar la precisión, utilidad y escalabilidad d
 
 📅 Fecha de creación: marzo, 2025
 
-🔗 Repositorio en GitHub: 
+🔗 Repositorio en GitHub: https://github.com/haro-17/prediccion_precios_viviendas
