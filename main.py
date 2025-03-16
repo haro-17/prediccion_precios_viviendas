@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import joblib
 import numpy as np
+from typing import List  # Necesario si usas Python < 3.9
 
 # Cargar los archivos guardados del modelo
 model = joblib.load("random_forest_model.pkl")
@@ -13,7 +14,7 @@ app = FastAPI()
 
 # Crear la estructura de entrada basada en las características originales
 class HouseFeatures(BaseModel):
-    features: list[float]  # Lista con los valores de las características
+    features: List[float]  # Lista con los valores de las características
 
 @app.post("/predict")
 def predict_price(features: HouseFeatures):
