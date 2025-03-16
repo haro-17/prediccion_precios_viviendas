@@ -4,9 +4,13 @@ import numpy as np
 import joblib
 
 # Cargar los archivos .pkl
-model = joblib.load("random_forest_model.pkl")
-scaler = joblib.load("scaler.pkl")
-feature_names = joblib.load("feature_names.pkl")
+try:
+    model = joblib.load("random_forest_model.pkl")
+    scaler = joblib.load("scaler.pkl")
+    feature_names = joblib.load("feature_names.pkl")
+except Exception as e:
+    st.error(f"Error al cargar los archivos: {e}")
+    st.stop()  # Detiene la ejecución del código
 
 # Ahora, puedes usar estos archivos cargados en tu aplicación
 st.write("Modelo y archivos cargados correctamente.")
@@ -38,14 +42,3 @@ if st.button("Predecir Precio"):
 # Agregar un pie de página
 st.markdown("---")
 st.markdown("📌 *Proyecto de predicción de precios con Machine Learning*")
-
-
-
-import joblib
-
-model = joblib.load("/Users/diegoharoviscarra/Documents/random_forest_model.pkl")
-scaler = joblib.load("/Users/diegoharoviscarra/Documents/scaler.pkl")
-feature_names = joblib.load("/Users/diegoharoviscarra/Documents/feature_names.pkl")
-
-
-
