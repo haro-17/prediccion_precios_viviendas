@@ -9,36 +9,40 @@ try:
     scaler = joblib.load("scaler.pkl")
     feature_names = joblib.load("feature_names.pkl")
 except Exception as e:
-    st.error(f"Error al cargar los archivos: {e}")
+    st.error(f"❌ Error al cargar los archivos: {e}")
     st.stop()  # Detiene la ejecución del código
 
-# Ahora, puedes usar estos archivos cargados en tu aplicación
-st.write("Modelo y archivos cargados correctamente.")
+st.success("✅ Modelo y archivos cargados correctamente.")
 
 # Configurar la interfaz de usuario
-st.title("Predicción de Precios de Viviendas en Ámsterdam 🏠")
+st.title("🏠 Predicción de Precios de Viviendas en Ámsterdam")
 
-st.markdown("Ingrese las características de la vivienda para obtener una estimación del precio.")
+st.markdown(
+    "Ingrese las características de la vivienda para obtener una estimación del precio."
+)
 
-# Crear campos de entrada para cada característica
+# Organizar los inputs en columnas para mejor presentación
+col1, col2 = st.columns(2)
+
 input_data = {}
-for feature in feature_names:
-    input_data[feature] = st.number_input(f"{feature}", min_value=0.0, format="%.2f")
+
+for i, feature in enumerate(feature_names):
+    with col1 if i % 2 == 0 else col2:
+        input_data[feature] = st.number_input(
+            f"**{feature}**", min_value=0.0, format="%.2f", step=1.0
+        )
 
 # Botón para hacer la predicción
-if st.button("Predecir Precio"):
-    # Convertir la entrada en DataFrame
+st.markdown("---")
+if st.button("🔍 Predecir Precio"):
     input_df = pd.DataFrame([input_data])
-    
-    # Normalizar los datos con el mismo escalador usado en el entrenamiento
     input_scaled = scaler.transform(input_df)
-    
-    # Hacer la predicción
     prediction = model.predict(input_scaled)[0]
     
-    # Mostrar el resultado
-    st.success(f"💰 Precio estimado: €{prediction:,.2f}")
+    st.markdown(
+        f"## 💰 Precio estimado: **€{prediction:,.2f}**"
+    )
 
-# Agregar un pie de página
+# Pie de página
 st.markdown("---")
-st.markdown("📌 Proyecto de predicción de precios con Machine Learning")
+st.caption("📌 Proyecto de predicción de precios con Machine Learning")
