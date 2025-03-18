@@ -1,44 +1,39 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 import joblib
+import numpy as np
 
-# Cargar los archivos .pkl
-try:
-    model = joblib.load("random_forest_model.pkl")
-    scaler = joblib.load("scaler.pkl")
-    feature_names = joblib.load("feature_names.pkl")
-except Exception as e:
-    st.error(f"Error al cargar los archivos: {e}")
-    st.stop()  # Detiene la ejecución del código
+# Cargar el modelo
+modelo = joblib.load("modelo_precio_viviendas.pkl")
 
-# Ahora, puedes usar estos archivos cargados en tu aplicación
-st.write("Modelo y archivos cargados correctamente.")
+# Estilos CSS para personalización
+st.markdown("""
+    <style>
+        .main { background-color: #f5f5f5; }
+        h1 { color: #FF5733; text-align: center; }
+        .stButton>button { background-color: #FF5733; color: white; }
+    </style>
+""", unsafe_allow_html=True)
 
-# Configurar la interfaz de usuario
-st.title("Predicción de Precios de Viviendas en Ámsterdam 🏠")
+# Título y descripción
+st.title("🏠 Predicción de Precios de Viviendas en Ámsterdam")
+st.markdown("### Ingrese las características de la vivienda para obtener una estimación del precio")
 
-st.markdown("Ingrese las características de la vivienda para obtener una estimación del precio.")
+# Imagen decorativa
+st.image("house.jpg", use_column_width=True)
 
-# Crear campos de entrada para cada característica
-input_data = {}
-for feature in feature_names:
-    input_data[feature] = st.number_input(f"{feature}", min_value=0.0, format="%.2f")
+# Organización en dos columnas
+col1, col2 = st.columns(2)
 
-# Botón para hacer la predicción
-if st.button("Predecir Precio"):
-    # Convertir la entrada en DataFrame
-    input_df = pd.DataFrame([input_data])
-    
-    # Normalizar los datos con el mismo escalador usado en el entrenamiento
-    input_scaled = scaler.transform(input_df)
-    
-    # Hacer la predicción
-    prediction = model.predict(input_scaled)[0]
-    
-    # Mostrar el resultado
-    st.success(f"💰 Precio estimado: €{prediction:,.2f}")
+with col1:
+    area = st.slider("📏 Área (m²)", min_value=10, max_value=500, value=50, step=1)
+    room = st.slider("🛏 Habitaciones", min_value=1, max_value=10, value=2, step=1)
 
-# Agregar un pie de página
-st.markdown("---")
-st.markdown("📌 *Proyecto de predicción de precios con Machine Learning*")
+with col2:
+    lon = st.number_input("📍 Longitud", min_value=-180.0, max_value=180.0, step=0.01)
+    lat = st.number_input("📍 Latitud", min_value=-90.0, max_value=90.0, step=0.01)
+
+# Botón de predicción
+if st.button("💰 Calcular Precio"):
+    entrada = np.array([[area, room, lon, lat]])
+    precio_estimado = modelo.predict(entrada)[0]
+    st.success(f"Precio estimado: €{precio_estimado:,.2f}")
